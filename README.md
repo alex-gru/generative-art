@@ -2,4 +2,4 @@
 
 Having some fun with [Generative art](https://en.wikipedia.org/wiki/Generative_art) in Javascript. 
 
-Inspired by a talk by [Tim Holman](http://tholman.com/) at the [We Are Developers](https://www.wearedevelopers.com/) conference (Vienna, 2018).
+Inspired by a talk by [Tim Holman](http://tholman.com/) at the [We Are Developers](https://github.com/alex-gru/we-are-developers-2018) conference (Vienna, 2018).
