@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Art Playground</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+<h1>Generative Art - Lines + Tiling</h1>
+<p>Click on the canvas (multiple times) to draw random lines on a tiled canvas.</p>
+<canvas id="canvas" width="500" height="500"></canvas>
+<div><button id="color">Color</button> Tile size: <span id="tileSize"></span></div>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const tileSizeInfo = document.getElementById("tileSize");
+  const colorBtn = document.getElementById("color");
+  const context = canvas.getContext("2d");
+  context.lineWidth = 2;
+  let color = false;
+  const max = 400;
+  const tileSizes = [400, 200, 100, 50, 25, 20];
+  let tileSizeIdx = 0;
+
+  draw = () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+    for (let x = 0; x < max; x = x + tileSizes[tileSizeIdx]) {
+      for (let y = 0; y < max; y = y + tileSizes[tileSizeIdx]) {
+        const points = [[[0, 0], [tileSizes[tileSizeIdx], tileSizes[tileSizeIdx]]], [[0, tileSizes[tileSizeIdx]], [tileSizes[tileSizeIdx], 0]]]; // start and end points for / and \
+        const randomPointIdx = Math.floor(Math.random() * points.length);
+        const moveTo = [x + points[randomPointIdx][0][0], y + points[randomPointIdx][0][1]];
+        const lineTo = [x + points[randomPointIdx][1][0], y + points[randomPointIdx][1][1]];
+
+        context.strokeStyle = color
+          ? "rgb(" + Math.round(255 * Math.random()) + "," + Math.round(255 * Math.random()) + "," + Math.round(255 * Math.random()) + ")"
+          : "rgb(0,0,0)";
+        context.moveTo(moveTo[0], moveTo[1]);
+        context.lineTo(lineTo[0], lineTo[1]);
+        context.stroke();
+      }
+    }
+    tileSizeInfo.innerHTML = tileSizes[tileSizeIdx];
+    tileSizeIdx = (tileSizeIdx + 1) % tileSizes.length;
+  };
+  draw();
+  canvas.onclick = draw;
+  colorBtn.onclick = () => {
+    color = !color;
+    tileSizeIdx = 0;
+    draw();
+    colorBtn.style.backgroundColor = color ? "lightgreen" : "white";
+  }
+</script>
+</body>
+</html>
