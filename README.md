@@ -1,4 +1,4 @@
-# Generative Art Playground
+# Generative Art Playground (WIP)
 
 Having fun with [Generative art](https://en.wikipedia.org/wiki/Generative_art) in Javascript. 
 
