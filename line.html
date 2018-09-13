@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Art Playground</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+<h1>Generative Art - Random line</h1>
+<p>Click on the canvas to draw a random line.</p>
+<canvas id="canvas" width="250" height = "250"></canvas>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const points = [[[0, 0], [200, 200]], [[0, 200], [200, 0]]]; // start and end points for / and \
+  const context = canvas.getContext("2d");
+  context.lineWidth = 2;
+
+  draw = function () {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+
+    const randomPointIdx = Math.floor(Math.random() * points.length);
+    const moveTo = [points[randomPointIdx][0][0], points[randomPointIdx][0][1]];
+    const lineTo = [points[randomPointIdx][1][0], points[randomPointIdx][1][1]];
+
+    context.moveTo(moveTo[0], moveTo[1]);
+    context.lineTo(lineTo[0], lineTo[1]);
+    context.stroke();
+  };
+  draw();
+  canvas.onclick = draw;
+</script>
+</body>
+</html>
