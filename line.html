@@ -22,8 +22,8 @@
     context.beginPath();
 
     const randomPointIdx = Math.floor(Math.random() * points.length);
-    const moveTo = [points[randomPointIdx][0][0], points[randomPointIdx][0][1]];
-    const lineTo = [points[randomPointIdx][1][0], points[randomPointIdx][1][1]];
+    const moveTo = points[randomPointIdx][0];
+    const lineTo = points[randomPointIdx][1];
 
     context.moveTo(moveTo[0], moveTo[1]);
     context.lineTo(lineTo[0], lineTo[1]);
