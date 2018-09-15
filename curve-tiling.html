@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Art Playground</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+<h1>Generative Art - Bezier Curves + Tiling</h1>
+<p>Click on the canvas (multiple times) to draw random Bezier curves on a tiled canvas.</p>
+<canvas id="canvas" width="500" height="500"></canvas>
+<div><button id="color">Color</button> Tile size: <span id="tileSize"></span></div>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const tileSizeInfo = document.getElementById("tileSize");
+  const colorBtn = document.getElementById("color");
+  const context = canvas.getContext("2d");
+  context.lineWidth = 1;
+  let color = false;
+  const max = 400;
+  const tileSizes = [400, 200, 100, 50, 25, 20];
+  let tileSizeIdx = 0;
+
+  draw = (increment) => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+    for (let x = 0; x < max; x = x + tileSizes[tileSizeIdx]) {
+      for (let y = 0; y < max; y = y + tileSizes[tileSizeIdx]) {
+        const variant1 = [[[0,tileSizes[tileSizeIdx]/2],[tileSizes[tileSizeIdx]/4, tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]*(3/4), tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]]], [[tileSizes[tileSizeIdx]/2, 0],[tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]/4, tileSizes[tileSizeIdx]*(3/4), tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx], tileSizes[tileSizeIdx]/2]]];
+        const variant2 = [[[0,tileSizes[tileSizeIdx]/2],[tileSizes[tileSizeIdx]/4, tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]/4, tileSizes[tileSizeIdx]/2, 0]], [[tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]],[tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx]*(3/4), tileSizes[tileSizeIdx]*(3/4), tileSizes[tileSizeIdx]/2, tileSizes[tileSizeIdx], tileSizes[tileSizeIdx]/2]]];
+        const points = [variant1, variant2];
+
+        const randomPointIdx = Math.floor(Math.random() * points.length);
+
+        const moveTo1 = [x + points[randomPointIdx][0][0][0], y + points[randomPointIdx][0][0][1]];
+        const bezierCurveTo1 = [x + points[randomPointIdx][0][1][0], y + points[randomPointIdx][0][1][1], x + points[randomPointIdx][0][1][2], y + points[randomPointIdx][0][1][3], x + points[randomPointIdx][0][1][4], y + points[randomPointIdx][0][1][5]];
+        context.moveTo(moveTo1[0], moveTo1[1]);
+        context.bezierCurveTo(bezierCurveTo1[0], bezierCurveTo1[1], bezierCurveTo1[2], bezierCurveTo1[3], bezierCurveTo1[4], bezierCurveTo1[5]);
+        const moveTo2 = [x + points[randomPointIdx][1][0][0], y + points[randomPointIdx][1][0][1]];
+        const bezierCurveTo2 = [x + points[randomPointIdx][1][1][0], y + points[randomPointIdx][1][1][1], x + points[randomPointIdx][1][1][2], y + points[randomPointIdx][1][1][3], x + points[randomPointIdx][1][1][4], y + points[randomPointIdx][1][1][5]];
+        context.moveTo(moveTo2[0], moveTo2[1]);
+        context.bezierCurveTo(bezierCurveTo2[0], bezierCurveTo2[1], bezierCurveTo2[2], bezierCurveTo2[3], bezierCurveTo2[4], bezierCurveTo2[5]);
+
+        context.strokeStyle = color
+          ? "rgb(" + Math.round(255 * Math.random()) + "," + Math.round(255 * Math.random()) + "," + Math.round(255 * Math.random()) + ")"
+          : "rgb(0,0,0)";
+
+        context.stroke();
+      }
+    }
+    tileSizeInfo.innerHTML = tileSizes[tileSizeIdx];
+    if (increment) {
+      tileSizeIdx = (tileSizeIdx + 1) % tileSizes.length;
+    }
+  };
+  draw();
+  canvas.onclick = draw;
+  colorBtn.onclick = () => {
+    color = !color;
+    draw(false);
+    colorBtn.style.backgroundColor = color ? "lightgreen" : "white";
+  };
+</script>
+</body>
+</html>
