@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Art Playground</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+<h1>Generative Art - Random Bezier curve</h1>
+<p>Click on the canvas to draw a random Bezier curve composition.</p>
+<canvas id="canvas" width="500" height = "500"></canvas>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const variant1 = [[[0,200],[100, 200, 200, 300, 200, 400]],[[200,0],[200, 100, 300, 200, 400, 200]]];
+  const variant2 = [[[0,200],[100, 200, 200, 100, 200, 0]],[[200,400],[200, 300, 300, 200, 400, 200]]];
+
+  const points = [variant1, variant2];
+  const context = canvas.getContext("2d");
+  context.lineWidth = 2;
+
+  draw = function () {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+
+    const randomPointIdx = Math.floor(Math.random() * points.length);
+
+    const moveTo1 = points[randomPointIdx][0][0];
+    const bezierCurveTo1 = points[randomPointIdx][0][1];
+    context.moveTo(moveTo1[0], moveTo1[1]);
+    context.bezierCurveTo(bezierCurveTo1[0], bezierCurveTo1[1], bezierCurveTo1[2], bezierCurveTo1[3], bezierCurveTo1[4], bezierCurveTo1[5]);
+    const moveTo2 = points[randomPointIdx][1][0];
+    const bezierCurveTo2 = points[randomPointIdx][1][1];
+    context.moveTo(moveTo2[0], moveTo2[1]);
+    context.bezierCurveTo(bezierCurveTo2[0], bezierCurveTo2[1], bezierCurveTo2[2], bezierCurveTo2[3], bezierCurveTo2[4], bezierCurveTo2[5]);
+
+    context.stroke();
+  };
+  draw();
+  canvas.onclick = draw;
+</script>
+</body>
+</html>
