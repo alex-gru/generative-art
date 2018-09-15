@@ -10,25 +10,31 @@
 <h1>Generative Art - Lines + Tiling</h1>
 <p>Click on the canvas (multiple times) to draw random lines on a tiled canvas.</p>
 <canvas id="canvas" width="500" height="500"></canvas>
-<div><button id="color">Color</button> Tile size: <span id="tileSize"></span></div>
+<div><button id="diagonals">Diagonals</button><button id="color">Color</button> Tile size: <span id="tileSize"></span></div>
 
 <script>
   const canvas = document.getElementById("canvas");
   const tileSizeInfo = document.getElementById("tileSize");
   const colorBtn = document.getElementById("color");
+  const diagonalsBtn = document.getElementById("diagonals");
   const context = canvas.getContext("2d");
-  context.lineWidth = 2;
+  context.lineWidth = 1;
   let color = false;
+  let diagonals = false;
   const max = 400;
   const tileSizes = [400, 200, 100, 50, 25, 20];
   let tileSizeIdx = 0;
 
-  draw = () => {
+  draw = (increment) => {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.beginPath();
     for (let x = 0; x < max; x = x + tileSizes[tileSizeIdx]) {
       for (let y = 0; y < max; y = y + tileSizes[tileSizeIdx]) {
-        const points = [[[0, 0], [tileSizes[tileSizeIdx], tileSizes[tileSizeIdx]]], [[0, tileSizes[tileSizeIdx]], [tileSizes[tileSizeIdx], 0]]]; // start and end points for / and \
+        // diagonals: start and end points for / and \
+        // !diagonals: start and end points for | and -
+        const points = diagonals
+          ? [[[0, 0], [tileSizes[tileSizeIdx], tileSizes[tileSizeIdx]]], [[0, tileSizes[tileSizeIdx]], [tileSizes[tileSizeIdx], 0]]]
+          : [[[tileSizes[tileSizeIdx]/2,0],[tileSizes[tileSizeIdx]/2,tileSizes[tileSizeIdx]]], [[0,tileSizes[tileSizeIdx]/2],[tileSizes[tileSizeIdx],tileSizes[tileSizeIdx]/2]]];
         const randomPointIdx = Math.floor(Math.random() * points.length);
         const moveTo = [x + points[randomPointIdx][0][0], y + points[randomPointIdx][0][1]];
         const lineTo = [x + points[randomPointIdx][1][0], y + points[randomPointIdx][1][1]];
@@ -42,15 +48,22 @@
       }
     }
     tileSizeInfo.innerHTML = tileSizes[tileSizeIdx];
-    tileSizeIdx = (tileSizeIdx + 1) % tileSizes.length;
+    if (increment) {
+      tileSizeIdx = (tileSizeIdx + 1) % tileSizes.length;
+    }
   };
   draw();
   canvas.onclick = draw;
   colorBtn.onclick = () => {
     color = !color;
-    tileSizeIdx = 0;
-    draw();
+    draw(false);
     colorBtn.style.backgroundColor = color ? "lightgreen" : "white";
+  };
+
+  diagonalsBtn.onclick = () => {
+    diagonals = !diagonals;
+    draw(false);
+    diagonalsBtn.style.backgroundColor = diagonals ? "#f0ad4e" : "white";
   }
 </script>
 </body>
