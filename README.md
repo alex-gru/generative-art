@@ -5,4 +5,5 @@ Having fun with [Generative art](https://en.wikipedia.org/wiki/Generative_art) i
 Inspired by a talk by [Tim Holman](http://tholman.com/) at the [WeAreDevelopers](https://github.com/alex-gru/we-are-developers-2018) conference (Vienna, 2018).
 
 
-<img src="media/lines-tiling-1.png" width="220"><img src="media/lines-tiling-2.png" width="220"><img src="media/lines-tiling-4.png" width="220"><img src="media/lines-tiling-6.png" width="220">
+<img src="media/lines-tiling-diagonals/1.png" width="220"><img src="media/lines-tiling-diagonals/2.png" width="220"><img src="media/lines-tiling-diagonals/4.png" width="220"><img src="media/lines-tiling-diagonals/6.png" width="220">
+<img src="media/lines-tiling-hor-vert/1.png" width="220"><img src="media/lines-tiling-hor-vert/2.png" width="220"><img src="media/lines-tiling-hor-vert/4.png" width="220"><img src="media/lines-tiling-hor-vert/6.png" width="220">
