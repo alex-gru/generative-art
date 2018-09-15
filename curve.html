@@ -3,42 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Generative Art Playground</title>
-  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
-<h1>Generative Art - Random Bezier curve</h1>
-<p>Click on the canvas to draw a random Bezier curve composition.</p>
-<canvas id="canvas" width="500" height = "500"></canvas>
+<canvas id="canvas-curve" width="200" height = "200"></canvas>
 
 <script>
-  const canvas = document.getElementById("canvas");
-  const variant1 = [[[0,200],[100, 200, 200, 300, 200, 400]], [[200, 0],[200, 100, 300, 200, 400, 200]]];
-  const variant2 = [[[0,200],[100, 200, 200, 100, 200, 0]], [[200, 400],[200, 300, 300, 200, 400, 200]]];
+  const canvasCurve = document.getElementById("canvas-curve");
+  const variant1 = [[[0,100],[50, 100, 100, 150, 100, 200]], [[100, 0],[100, 50, 150, 100, 200, 100]]];
+  const variant2 = [[[0,100],[50, 100, 100, 50, 100, 0]], [[100, 200],[100, 150, 150, 100, 200, 100]]];
 
-  const points = [variant1, variant2];
-  const context = canvas.getContext("2d");
-  context.lineWidth = 2;
+  const curves = [variant1, variant2];
+  const contextCanvasCurve = canvasCurve.getContext("2d");
+  contextCanvasCurve.lineWidth = 2;
 
   draw = function () {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.beginPath();
+    contextCanvasCurve.clearRect(0, 0, canvasCurve.width, canvasCurve.height);
+    contextCanvasCurve.beginPath();
 
-    const randomPointIdx = Math.floor(Math.random() * points.length);
+    const randomPointIdx = Math.floor(Math.random() * curves.length);
 
-    const moveTo1 = points[randomPointIdx][0][0];
-    const bezierCurveTo1 = points[randomPointIdx][0][1];
-    context.moveTo(moveTo1[0], moveTo1[1]);
-    context.bezierCurveTo(bezierCurveTo1[0], bezierCurveTo1[1], bezierCurveTo1[2], bezierCurveTo1[3], bezierCurveTo1[4], bezierCurveTo1[5]);
-    const moveTo2 = points[randomPointIdx][1][0];
-    const bezierCurveTo2 = points[randomPointIdx][1][1];
-    context.moveTo(moveTo2[0], moveTo2[1]);
-    context.bezierCurveTo(bezierCurveTo2[0], bezierCurveTo2[1], bezierCurveTo2[2], bezierCurveTo2[3], bezierCurveTo2[4], bezierCurveTo2[5]);
+    const moveTo1 = curves[randomPointIdx][0][0];
+    const bezierCurveTo1 = curves[randomPointIdx][0][1];
+    contextCanvasCurve.moveTo(moveTo1[0], moveTo1[1]);
+    contextCanvasCurve.bezierCurveTo(bezierCurveTo1[0], bezierCurveTo1[1], bezierCurveTo1[2], bezierCurveTo1[3], bezierCurveTo1[4], bezierCurveTo1[5]);
+    const moveTo2 = curves[randomPointIdx][1][0];
+    const bezierCurveTo2 = curves[randomPointIdx][1][1];
+    contextCanvasCurve.moveTo(moveTo2[0], moveTo2[1]);
+    contextCanvasCurve.bezierCurveTo(bezierCurveTo2[0], bezierCurveTo2[1], bezierCurveTo2[2], bezierCurveTo2[3], bezierCurveTo2[4], bezierCurveTo2[5]);
 
-    context.stroke();
+    contextCanvasCurve.stroke();
   };
   draw();
-  canvas.onclick = draw;
+  canvasCurve.onclick = draw;
 </script>
 </body>
 </html>

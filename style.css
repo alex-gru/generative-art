@@ -4,3 +4,22 @@ h1, p, div, span {
     -ms-user-select: none;
     user-select: none;
 }
+
+body {
+    padding: 10px;
+}
+
+td {
+    padding: 20px;
+}
+
+.polaroid {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.description {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #3e4444;
+    color: white;
+}

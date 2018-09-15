@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Art Playground</title>
+</head>
+
+<body>
+<canvas id="canvas-line-hor-vert-tiling" width="200" height="200"></canvas>
+
+<script>
+  const canvasLineHorVertTiling = document.getElementById("canvas-line-hor-vert-tiling");
+  const contextCanvasLineHorVertTiling = canvasLineHorVertTiling.getContext("2d");
+  contextCanvasLineHorVertTiling.lineWidth = 1;
+  const maxLineHorVert = 200;
+  const tileSizesLineHorVert = [100, 100, 50, 25, 20, 10];
+  let tileSizeIdxLineHorVert = 0;
+
+  draw = (increment) => {
+    contextCanvasLineHorVertTiling.clearRect(0, 0, canvasLineHorVertTiling.width, canvasLineHorVertTiling.height);
+    contextCanvasLineHorVertTiling.beginPath();
+    for (let x = 0; x < maxLineHorVert; x = x + tileSizesLineHorVert[tileSizeIdxLineHorVert]) {
+      for (let y = 0; y < maxLineHorVert; y = y + tileSizesLineHorVert[tileSizeIdxLineHorVert]) {
+        const pointsLine = [[[tileSizesLineHorVert[tileSizeIdxLineHorVert]/2,0],[tileSizesLineHorVert[tileSizeIdxLineHorVert]/2,tileSizesLineHorVert[tileSizeIdxLineHorVert]]], [[0,tileSizesLineHorVert[tileSizeIdxLineHorVert]/2],[tileSizesLineHorVert[tileSizeIdxLineHorVert],tileSizesLineHorVert[tileSizeIdxLineHorVert]/2]]];
+        const randomPointIdx = Math.floor(Math.random() * pointsLine.length);
+        const moveTo = [x + pointsLine[randomPointIdx][0][0], y + pointsLine[randomPointIdx][0][1]];
+        const lineTo = [x + pointsLine[randomPointIdx][1][0], y + pointsLine[randomPointIdx][1][1]];
+
+        contextCanvasLineHorVertTiling.moveTo(moveTo[0], moveTo[1]);
+        contextCanvasLineHorVertTiling.lineTo(lineTo[0], lineTo[1]);
+        contextCanvasLineHorVertTiling.stroke();
+      }
+    }
+    if (increment) {
+      tileSizeIdxLineHorVert = (tileSizeIdxLineHorVert + 1) % tileSizesLineHorVert.length;
+    }
+  };
+  draw();
+  canvasLineHorVertTiling.onclick = draw;
+</script>
+</body>
+</html>

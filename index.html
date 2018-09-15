@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Art Playground</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+  <script>
+    $(function () {
+      $("#line").load("line.html");
+      $("#line-diagonal-tiling").load("line-diagonal-tiling.html");
+      $("#line-hor-vert-tiling").load("line-hor-vert-tiling.html");
+      $("#curve").load("curve.html");
+      $("#curve-tiling").load("curve-tiling.html");
+    });
+  </script>
+</head>
+
+<body>
+
+<h1>Generative Art Playground</h1>
+<h2>What is Generative Art?</h2>
+<em>Generative art refers to art that in whole or in part has been created with the use of an autonomous system.
+  An autonomous system in this context is generally one that is non-human and can independently determine features of an
+  artwork that would otherwise
+  require decisions made directly by the artist.</em> <a href="https://en.wikipedia.org/wiki/Generative_art">[1]</a>
+
+<br><br><hr>
+<h2>In this context</h2>
+
+<p>Here, generative art is created by drawing different geometric shapes on a canvas, based on <i>random</i> decisions.</p>
+
+<table>
+  <tr>
+    <td><div class="polaroid"><div id="line"></div><div class="description">Simple line</div></div></td>
+    <td><div class="polaroid"><div id="curve"></div><div class="description">Bezier curve</div></div></td>
+    <td><div class="polaroid"><div id="line-diagonal-tiling"></div><div class="description">Line (diagonal) + Tiling</div></div></td>
+    <td><div class="polaroid"><div id="line-hor-vert-tiling"></div><div class="description">Line + Tiling</div></div></td>
+    <td><div class="polaroid"><div id="curve-tiling"></div><div class="description">Curve + Tiling</div></div></td>
+  </tr>
+</table>
+
+</body>
+</html>
