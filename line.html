@@ -9,11 +9,11 @@
 <body>
 <h1>Generative Art - Random line</h1>
 <p>Click on the canvas to draw a random line.</p>
-<canvas id="canvas" width="250" height = "250"></canvas>
+<canvas id="canvas" width="500" height = "500"></canvas>
 
 <script>
   const canvas = document.getElementById("canvas");
-  const points = [[[0, 0], [200, 200]], [[0, 200], [200, 0]]]; // start and end points for / and \
+  const points = [[[0, 0], [400, 400]], [[0, 400], [400, 0]]]; // start and end points for / and \
   const context = canvas.getContext("2d");
   context.lineWidth = 2;
 
