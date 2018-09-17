@@ -1,6 +1,6 @@
 # Generative Art Playground (WIP)
 
-Having fun with [Generative art](https://en.wikipedia.org/wiki/Generative_art) in Javascript. 
+Having fun with [Generative Art](https://en.wikipedia.org/wiki/Generative_art) in Javascript. 
 
 Inspired by a talk by [Tim Holman](http://tholman.com/) at the [WeAreDevelopers](https://github.com/alex-gru/we-are-developers-2018) conference (Vienna, 2018).
 
