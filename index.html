@@ -5,16 +5,6 @@
   <title>Generative Art Playground</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-  <script>
-    $(function () {
-      $("#line").load("line.html");
-      $("#line-diagonal-tiling").load("line-diagonal-tiling.html");
-      $("#line-hor-vert-tiling").load("line-hor-vert-tiling.html");
-      $("#curve").load("curve.html");
-      $("#curve-tiling").load("curve-tiling.html");
-    });
-  </script>
 </head>
 
 <body>
@@ -33,6 +23,7 @@
 
 <table>
   <tr>
+    <td><div class="polaroid"><div id="wave"></div><div class="description">Repetitive wave</div></div></td>
     <td><div class="polaroid"><div id="line"></div><div class="description">Simple line</div></div></td>
     <td><div class="polaroid"><div id="curve"></div><div class="description">Bezier curve</div></div></td>
     <td><div class="polaroid"><div id="line-diagonal-tiling"></div><div class="description">Line (diagonal) + Tiling</div></div></td>
@@ -41,5 +32,18 @@
   </tr>
 </table>
 
+<p>Just click on the cards multiple times, to see how the art is generated.</p>
+
+
+<script>
+  $(function () {
+    $("#wave").load("wave.html");
+    $("#line").load("line.html");
+    $("#line-diagonal-tiling").load("line-diagonal-tiling.html");
+    $("#line-hor-vert-tiling").load("line-hor-vert-tiling.html");
+    $("#curve").load("curve.html");
+    $("#curve-tiling").load("curve-tiling.html");
+  });
+</script>
 </body>
 </html>

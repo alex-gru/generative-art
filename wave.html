@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Art Playground</title>
+</head>
+
+<body>
+<canvas id="canvas-wave" width="200" height = "200"></canvas>
+
+<script>
+  const canvasWave = document.getElementById("canvas-wave");
+  const contextCanvasWave = canvasWave.getContext("2d");
+  contextCanvasWave.lineWidth = 1;
+
+  const max = 200;
+  let stepSize = 10;
+  let endY = 100;
+  let oldEndY = 100;
+  draw = function () {
+    contextCanvasWave.lineWidth = Math.random() * 3;
+    for (let step = 0; step < max; step += stepSize) {
+      oldEndY = endY;
+      stepSize = step + Math.floor(Math.random() * (max - step));
+      endY = Math.floor(Math.random() * 200);
+      contextCanvasWave.beginPath();
+      contextCanvasWave.moveTo(step, oldEndY);
+      contextCanvasWave.quadraticCurveTo(step + stepSize / 2, Math.floor(Math.random() * 200), step + stepSize, endY);
+      contextCanvasWave.stroke();
+    }
+  };
+  draw();
+  canvasWave.onclick = draw;
+</script>
+</body>
+</html>
